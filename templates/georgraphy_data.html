@@ -1,0 +1,231 @@
+{% load static %}
+
+{% block head_content %}
+{% endblock %}
+
+{% block main_content %}
+    <div class="container">
+        {#    <img src="{% static 'myapp1/img/{{ image_file }}' %}" {{ image_style }} alt="">#}
+        <h2>Статистика по городам</h2>
+        {% if prerender %}
+            <table class="table">
+                <colgroup>
+                    <col style="width: 25%">
+                    <col style="width: 25%">
+                    <col style="width: 25%">
+                    <col style="width: 25%">
+                </colgroup>
+                <thead>
+                <tr>
+
+                    <th>
+                        Город
+                    </th>
+
+                    <th>
+                        Всего вакансий
+                    </th>
+
+                    <th>
+                        Средняя зарплата
+                    </th>
+
+                    <th>
+                        Вакансий C#-разработчик
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td>
+                        Москва
+                    </td>
+                    <td>
+                        1361143
+                    </td>
+                    <td>
+                        83688
+                    </td>
+                    <td>
+                        12227
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Санкт-Петербург
+                    </td>
+                    <td>
+                        413221
+                    </td>
+                    <td>
+                        68744
+                    </td>
+                    <td>
+                        4824
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Минск
+                    </td>
+                    <td>
+                        165500
+                    </td>
+                    <td>
+                        94082
+                    </td>
+                    <td>
+                        2105
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Киев
+                    </td>
+                    <td>
+                        131088
+                    </td>
+                    <td>
+                        79898
+                    </td>
+                    <td>
+                        1373
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Новосибирск
+                    </td>
+                    <td>
+                        96299
+                    </td>
+                    <td>
+                        64772
+                    </td>
+                    <td>
+                        1142
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Воронеж
+                    </td>
+                    <td>
+                        75778
+                    </td>
+                    <td>
+                        43461
+                    </td>
+                    <td>
+                        1068
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Нижний Новгород
+                    </td>
+                    <td>
+                        87385
+                    </td>
+                    <td>
+                        49915
+                    </td>
+                    <td>
+                        1017
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Екатеринбург
+                    </td>
+                    <td>
+                        80387
+                    </td>
+                    <td>
+                        59139
+                    </td>
+                    <td>
+                        982
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Казань
+                    </td>
+                    <td>
+                        75656
+                    </td>
+                    <td>
+                        51310
+                    </td>
+                    <td>
+                        896
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Ростов-на-Дону
+                    </td>
+                    <td>
+                        56589
+                    </td>
+                    <td>
+                        45004
+                    </td>
+                    <td>
+                        600
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        {% else %}
+            <table class="table">
+                <colgroup>
+                    <col style="width: 25%">
+                    <col style="width: 25%">
+                    <col style="width: 25%">
+                    <col style="width: 25%">
+                </colgroup>
+                <thead>
+                <tr>
+                    {% for header in header_city %}
+                        <th>
+                            {{ header }}
+                        </th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for city in statistics_by_cities %}
+                    <tr>
+                        <td>
+                            {{ city.area_name }}
+                        </td>
+                        <td>
+                            {{ city.total_count }}
+                        </td>
+                        <td>
+                            {{ city.avg_salary|floatformat:"0" }}
+                        </td>
+                        <td>
+                            {{ city.prof_count }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

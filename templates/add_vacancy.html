@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block head_content %}
+    <title>Добавление вакансии</title>
+{% endblock %}
+
+{% block main_content %}
+    <div class="features">
+    <h1>Добавление вакансии</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.name }}<br>
+            {{ form.key_skills }}<br>
+            {{ form.salary }}<br>
+            {{ form.area_name }}<br>
+            {{ form.published_at }}<br>
+{#            <input type="text" class="form-control"><br>#}
+{#            <input type="text" class="form-control"><br>#}
+{#            <input type="number" class="form-control"><br>#}
+            <span>{{ error_message }}</span>
+            <button class="btn btn-success" type="submit">Добавить вакансию</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block head_content %}
+    <title>Vue</title>
+{% endblock %}
+
+{% block main_content %}
+    {% verbatim %}
+    <div class="container" id="vacancies_app">
+        <div class="btn btn-success btn-lg" v-for="vacancy in vacancies">
+            Fullname: {{ vacancy.second_name + " " + vacancy.name }}
+            <br>
+            Salary: {{ vacancy.salary }}
+        </div>
+    </div>
+    {% endverbatim %}
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
+    <script src="/myapp1/js/main_app.js"></script>
+{% endblock %}

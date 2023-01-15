@@ -1,0 +1,446 @@
+{% load static %}
+
+{#{% block head_content %}#}
+{#{% endblock %}#}
+
+{% block main_content %}
+    <div class="container">
+        <h2>Аналитика зарплат по годам для профессии {{ profession_name }}</h2>
+        {#    <img src="{% static 'myapp1/img/graphs/years_graph.png' %}" alt="">#}
+        <h3>Статистика по годам</h3>
+        {% if prerender %}
+            <table class="table">
+                <thead>
+                <tr>
+
+                    <th>
+                        Год
+                    </th>
+
+                    <th>
+                        Средняя зарплата
+                    </th>
+
+                    <th>
+                        Средняя зарплата - C#-разработчик
+                    </th>
+
+                    <th>
+                        Количество вакансий
+                    </th>
+
+                    <th>
+                        Количество вакансий - C#-разработчик
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td>
+                        2022
+                    </td>
+                    <td>
+                        95629
+                    </td>
+                    <td>
+                        188970
+                    </td>
+                    <td>
+                        91142
+                    </td>
+                    <td>
+                        1213
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2021
+                    </td>
+                    <td>
+                        83193
+                    </td>
+                    <td>
+                        161468
+                    </td>
+                    <td>
+                        287915
+                    </td>
+                    <td>
+                        4159
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2020
+                    </td>
+                    <td>
+                        72985
+                    </td>
+                    <td>
+                        122092
+                    </td>
+                    <td>
+                        489472
+                    </td>
+                    <td>
+                        6256
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2019
+                    </td>
+                    <td>
+                        70065
+                    </td>
+                    <td>
+                        125397
+                    </td>
+                    <td>
+                        535956
+                    </td>
+                    <td>
+                        5748
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2018
+                    </td>
+                    <td>
+                        65679
+                    </td>
+                    <td>
+                        116575
+                    </td>
+                    <td>
+                        517670
+                    </td>
+                    <td>
+                        4861
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2017
+                    </td>
+                    <td>
+                        60394
+                    </td>
+                    <td>
+                        101237
+                    </td>
+                    <td>
+                        391464
+                    </td>
+                    <td>
+                        3559
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2016
+                    </td>
+                    <td>
+                        61331
+                    </td>
+                    <td>
+                        112266
+                    </td>
+                    <td>
+                        332460
+                    </td>
+                    <td>
+                        3041
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2015
+                    </td>
+                    <td>
+                        51739
+                    </td>
+                    <td>
+                        92169
+                    </td>
+                    <td>
+                        284763
+                    </td>
+                    <td>
+                        4146
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2014
+                    </td>
+                    <td>
+                        49078
+                    </td>
+                    <td>
+                        71990
+                    </td>
+                    <td>
+                        259571
+                    </td>
+                    <td>
+                        4262
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2013
+                    </td>
+                    <td>
+                        53548
+                    </td>
+                    <td>
+                        67864
+                    </td>
+                    <td>
+                        234019
+                    </td>
+                    <td>
+                        1188
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2012
+                    </td>
+                    <td>
+                        47967
+                    </td>
+                    <td>
+                        66139
+                    </td>
+                    <td>
+                        173897
+                    </td>
+                    <td>
+                        714
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2011
+                    </td>
+                    <td>
+                        46448
+                    </td>
+                    <td>
+                        59741
+                    </td>
+                    <td>
+                        142458
+                    </td>
+                    <td>
+                        389
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2010
+                    </td>
+                    <td>
+                        44658
+                    </td>
+                    <td>
+                        54832
+                    </td>
+                    <td>
+                        93494
+                    </td>
+                    <td>
+                        169
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2009
+                    </td>
+                    <td>
+                        44812
+                    </td>
+                    <td>
+                        55972
+                    </td>
+                    <td>
+                        52889
+                    </td>
+                    <td>
+                        60
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2008
+                    </td>
+                    <td>
+                        48411
+                    </td>
+                    <td>
+                        49306
+                    </td>
+                    <td>
+                        75070
+                    </td>
+                    <td>
+                        38
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2007
+                    </td>
+                    <td>
+                        44449
+                    </td>
+                    <td>
+                        55094
+                    </td>
+                    <td>
+                        53562
+                    </td>
+                    <td>
+                        10
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2006
+                    </td>
+                    <td>
+                        41317
+                    </td>
+                    <td>
+                        25222
+                    </td>
+                    <td>
+                        33321
+                    </td>
+                    <td>
+                        5
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2005
+                    </td>
+                    <td>
+                        375739
+                    </td>
+                    <td>
+
+                        0
+
+                    </td>
+                    <td>
+                        16022
+                    </td>
+                    <td>
+                        0
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2004
+                    </td>
+                    <td>
+                        42967
+                    </td>
+                    <td>
+
+                        0
+
+                    </td>
+                    <td>
+                        7833
+                    </td>
+                    <td>
+                        0
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2003
+                    </td>
+                    <td>
+                        41305
+                    </td>
+                    <td>
+
+                        0
+
+                    </td>
+                    <td>
+                        1983
+                    </td>
+                    <td>
+                        0
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        {% else %}
+            <table class="table">
+                <thead>
+                <tr>
+                    {% for header in header_year %}
+                        <th>
+                            {{ header }}
+                        </th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for year in statistics_by_years %}
+                    <tr>
+                        <td>
+                            {{ year.published_at }}
+                        </td>
+                        <td>
+                            {{ year.avg_salary|floatformat:'0' }}
+                        </td>
+                        <td>
+                            {% if year.prof_salary %}{{ year.prof_salary|floatformat:'0' }}{% else %}
+                                0
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{ year.total_count }}
+                        </td>
+                        <td>
+                            {{ year.prof_count }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% load static %}
+
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/a96e6f375c.js" crossorigin="anonymous"></script>
+{#    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">#}
+    <link rel="stylesheet" href="{% static 'myapp1/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'myapp1/css/myapp1.css' %}">
+    {% block head_content %}{% endblock %}
+</head>
+<body>
+<aside>
+    <img src="{% static 'myapp1/img/python-logo.svg' %}" alt="Логотип Python">
+    <h1 class="panel-title">C#-разработчик</h1>
+    <h2 class="modal-title">Навигация по сайту</h2>
+    <ul>
+        <li>
+            <a href="{% url 'home' %}"><i class="fa-solid fa-house"></i>Главная страница</a>
+        </li>
+        <li>
+            <a href="{% url 'relevance' %}"><i class="fa-solid fa-star"></i>Востребованность</a>
+        </li>
+        <li>
+            <a href="{% url 'geography' %}"><i class="fa-solid fa-location-dot"></i>География</a>
+        </li>
+        <li>
+            <a href="{% url 'skills' %}"><i class="fa-solid fa-list"></i>Навыки</a>
+        </li>
+        <li>
+            <a href="{% url 'recent-vacancies' %}"><i class="fa-solid fa-clock"></i>Последние вакансии</a>
+        </li>
+        <li>
+            <a href="{% url 'add-vacancy' %}"><button class="btn btn-info"><i class="fa-solid fa-plus-circle"></i>Добавить запись</button></a>
+        </li>
+    </ul>
+
+</aside>
+<main>
+    {% block main_content %}
+    {% endblock %}
+</main>
+</body>
+</html>

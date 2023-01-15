@@ -1,4 +1,4 @@
-"""Django_StatisticForDeveloper URL Configuration
+"""djangoProject URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -15,7 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from myapp1 import views
+# from rest_framework.routers import SimpleRouter
+from django.conf import settings
+from django.conf.urls.static import static
+# from myapp1.views import ExampleView
+
+# router = SimpleRouter()
+# router.register("api/vacancies", ExampleView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index_page, name='home'),
+    path('relevance/', views.relevance_page, name='relevance'),
+    path('geography/', views.geography_page, name='geography'),
+    path('skills/', views.skills_page, name='skills'),
+    path('recent-vacancies/', views.recent_vacancies_page, name='recent-vacancies'),
+    path('add-vacancy', views.add_vacancy, name='add-vacancy'),
+    path('vue/', views.vue_page, name='vue')
 ]
+
+# urlpatterns += router.urls
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

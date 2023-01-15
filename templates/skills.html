@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+
+{% block head_content %}
+    <title>Навыки</title>
+{% endblock %}
+
+{% block main_content %}
+    <div class="container">
+        <h2>Навыки</h2>
+        <p>Проценты указаны по отношению к числу всех навыков за выбранный год</p>
+        {% if prerender %}
+            <table class="table">
+                <thead>
+                <tr>
+
+                    <th>
+                        Год
+                    </th>
+
+                    <th>
+                        Навыки
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                    <td>
+                        2022
+                    </td>
+                    <td>
+                        SQL - 2,13%, Работа в команде - 2,01%, Английский язык - 1,80%, Git - 1,67%, Linux - 1,35%,
+                        JavaScript - 1,16%, Python - 1,12%, Пользователь ПК - 1,11%, Грамотная речь - 1,06%, Управление
+                        проектами - 1,04%,
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2021
+                    </td>
+                    <td>
+                        SQL - 2,09%, Работа в команде - 1,94%, Английский язык - 1,79%, Git - 1,64%, Грамотная речь -
+                        1,60%,
+                        Пользователь ПК - 1,41%, JavaScript - 1,32%, Linux - 1,28%, Python - 1,07%, Управление проектами
+                        -
+                        1,00%,
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2020
+                    </td>
+                    <td>
+                        SQL - 2,05%, Git - 1,65%, Английский язык - 1,56%, JavaScript - 1,52%, Работа в команде - 1,37%,
+                        Пользователь ПК - 1,37%, Linux - 1,33%, Грамотная речь - 1,20%, Java - 1,12%, HTML - 1,02%,
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2019
+                    </td>
+                    <td>
+                        JavaScript - 1,94%, SQL - 1,57%, Git - 1,54%, HTML - 1,36%, Работа в команде - 1,23%, Английский
+                        язык - 1,21%, CSS - 1,20%, Пользователь ПК - 1,15%, Linux - 1,11%, Ведение переговоров - 1,11%,
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2018
+                    </td>
+                    <td>
+                        JavaScript - 2,33%, HTML - 1,67%, Git - 1,62%, CSS - 1,46%, PHP - 1,42%, SQL - 1,34%, MySQL -
+                        1,30%,
+                        Ведение переговоров - 1,27%, Управление проектами - 1,13%, Работа в команде - 1,10%,
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2017
+                    </td>
+                    <td>
+                        JavaScript - 2,54%, HTML - 1,82%, PHP - 1,60%, CSS - 1,60%, Git - 1,58%, MySQL - 1,41%, Ведение
+                        переговоров - 1,28%, SQL - 1,25%, jQuery - 1,22%, HTML5 - 1,13%,
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2016
+                    </td>
+                    <td>
+                        JavaScript - 2,35%, HTML - 1,70%, PHP - 1,57%, Git - 1,47%, Ведение переговоров - 1,46%, CSS -
+                        1,42%, jQuery - 1,34%, MySQL - 1,32%, Работа в команде - 1,24%, HTML5 - 1,18%,
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        2015
+                    </td>
+                    <td>
+                        JavaScript - 3,30%, ООП - 2,53%, jQuery - 2,52%, HTML5 - 2,46%, HTML - 1,87%, C# - 1,69%, MVC -
+                        1,55%, .NET Framework - 1,53%, CSS - 1,48%, ASP.NET - 1,48%,
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        {% else %}
+            <table class="table">
+                <thead>
+                <tr>
+                    {% for header in headers %}
+                        <th>
+                            {{ header }}
+                        </th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for year, skills in skills_by_year.items %}
+                    <tr>
+                        <td>
+                            {{ year }}
+                        </td>
+                        <td>
+                            {% for skill, count in skills %}{{ skill }} - {{ count|floatformat:"2" }}%, {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}
