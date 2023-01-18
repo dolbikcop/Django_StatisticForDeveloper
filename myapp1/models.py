@@ -17,3 +17,10 @@ class Vacancy(models.Model):
 
     def __str__(self):
         return f"{self.name} из г. {self.area_name}"
+
+
+class HH(models.Model):
+    date = models.DateTimeField(blank=False, null=False)
+
+    def __str__(self):
+        return f"{self.date}"
