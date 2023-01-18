@@ -1,28 +1,100 @@
 {% extends "layout.html" %}
 
+{% load static %}
+
 {% block head_content %}
-    <title>Project</title>
+    <title>{{ title }}</title>
 {% endblock %}
 
 {% block main_content %}
-    <div class="features">
-        <h1>Hello, World!</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores debitis enim esse est et impedit
-            inventore modi molestiae mollitia neque, nobis non numquam quas quis sint suscipit unde voluptate.
+    <h2>О профессии {{ profession_name }}</h2>
+    <div class="main-container flex">
+        <p class="main-description">
+            <b>Программист C# (С# Developer) </b> специализируется на разработке веб-приложений, десктопных
+            кроссплатформенных приложений, игр, облачных сервисов, приложений для устройств, работающих на ОС
+            Windows, других программных продуктов.
         </p>
-{#        <div class="btn btn-success btn-lg">-_-</div><br>#}
-
+        <img class="main-description-img" src="{% static 'myapp1/img/1.jpg' %}" alt="csharp">
+        <h4>История</h4>
+        <p class="main-description">
+            C# создали члены команды Microsoft в конце 90-х – начале 2000-х годов. Это объектно-ориентированный
+            типизированный язык, его относят к группе С-подобных языков. Флагманский язык фреймворка .NET. Изучается
+            C# достаточно легко, особенно если программист уже работал с C++ или Java, чей синтаксис очень приближен
+            к C#.
+        </p>
+        <h4>Краткое описание</h4>
+        <p class="main-description">
+            Язык прост в изучении, он отличается рядом преимуществ:
+        </p>
+        <ul class="">
+            <li class="main-description">большое количество syntactic sugar, что еще больше облегчает изучение C# и
+                работу с ним;
+            </li>
+            <li class="main-description">расширяется синтаксис, язык постоянно дорабатывается – компания Microsoft
+                регулярно совершенствует свое детище;
+            </li>
+            <li class="main-description">перспективный язык, который используется для популярной платформы .NET
+                Framework;
+            </li>
+            <li class="main-description">более простой и понятный код, чем у родственных C и C++;</li>
+            <li class="main-description">кроссплатформенность;</li>
+            <li class="main-description">много полезных материалов на русском и иностранных языках, которые можно
+                использовать для самообразования.
+            </li>
+        </ul>
+        <p class="main-description">
+            В рейтингах популярности языков программирования C# <u>стабильно занимает 5–7 позицию</u> (RedMonk, IEEE
+            Spectrum,
+            TIOBE). С Sharp используют для создания игр, ПО, мобильных, настольных и серверных приложений на .NET
+            Framework, в машинном обучении, поэтому программисты C# – востребованные разработчики.
+        </p>
+        <p class="main-description">
+            Программист C# может создавать сайты, игры на движке Unity, писать программы и разрабатывать приложения,
+            работать с нейросетями. Примеры позиций, на которых может работать С# Developer:
+        </p>
+        <ul>
+            <li class="main-description">Разработчик игр (Gamedev).</li>
+            <li class="main-description">Веб-разработчик (Web programmer, web developer, web engineer).</li>
+            <li class="main-description">Frontend-разработчик (Front-end Developer).</li>
+            <li class="main-description">Бэкенд-разработчик (Back-end developer).</li>
+            <li class="main-description">Специалист по машинному обучению (Machine Learning Specialist (ML Specialist)).
+            </li>
+            <li class="main-description">Мобильный разработчик (Mobile Developer, Mobile app Developer, App
+                Developer).
+            </li>
+            <li class="main-description">Программист C# должен уметь не только работать с кодом и вспомогательными
+                инструментами, но и координировать работу других сотрудников команды, планировать рабочее время,
+                составлять техзадания.
+            </li>
+        </ul>
+        <h4>Где работает программист C#</h4>
+        <p class="main-description">
+            Разработчикам на C# есть из чего выбирать, подыскивая место работы. В их знаниях и умениях нуждаются
+            компании разных масштабов:
+        </p>
+        <ul>
+            <li class="main-description">небольшие проекты, создающие игры на Unity;
+            </li>
+            <li class="main-description">ИТ-агентства, разрабатывающие сервисы на Windows, Linux и macOS,
+                бэкенд-приложения, REST API и приложения MVC;
+            </li>
+            <li class="main-description">веб-студии, создающие сайты (после выхода фреймворка Blazor на С# можно
+                написать не только бэкенд, но и фронтенд, причем без JavaScript. Используя HTML, CSS и C#, можно
+                разработать полноценный фуллстек-проект и десктопное приложение).
+            </li>
+        </ul>
+        <p class="main-description">
+            Язык C# используют <i>«Яндекс», Tinkoff, «Газпром», «Сбер», ВТБ, «Альфа-Банк», «Лукойл», VK, «Ситимобил»,
+            Delivery Club, Umbrella IT</i> и другие крупные корпорации. В России каждая вторая компания нуждается в
+            автоматизации рабочих процессов, поддержке уже имеющихся программных продуктов – все это могут делать
+            программисты на C#.
+        </p>
+        <p class="main-description">
+            Трудоустроиться на доходную должность программисту C# сложно только без опыта работы. Новичкам придется
+            минимум 6–12 месяцев работать Junior C# developer, но если у программиста есть необходимые качества и
+            талант, то он быстро перейдет на следующую ступень карьерного роста.
+        </p>
     </div>
-{#        <p class="hihihi">#}
-{#            {% for vacancy in vacancies %}#}
-{#                {{ vacancy }}#}
-{#            {% endfor %}#}
-{#        </p>#}
-
-{#            <div class="btn btn-success btn-lg">#}
-{#                Vacancy: {{ vacancy }}#}
-{#            </div>#}
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
