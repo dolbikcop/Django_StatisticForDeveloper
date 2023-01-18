@@ -4,19 +4,19 @@
 {% endblock %}
 
 {% block main_content %}
-    <div class="container">
-        {#    <img src="{% static 'myapp1/img/{{ image_file }}' %}" {{ image_style }} alt="">#}
-        <h2>Статистика по городам</h2>
-        {% if prerender %}
-            <table class="table">
-                <colgroup>
-                    <col style="width: 25%">
-                    <col style="width: 25%">
-                    <col style="width: 25%">
-                    <col style="width: 25%">
-                </colgroup>
-                <thead>
-                <tr>
+    <h2>Аналитика зарплат по городам для профессии {{ profession_name }}</h2>
+    <img class="cities-graph" src="{% static 'myapp1/img/graphs/cities_graph.png' %}" alt="">
+    <h4>{{ title }}</h4>
+    {% if prerender %}
+        <table class="table table-striped table-bordered table-hover">
+            <colgroup>
+                <col style="width: 25%">
+                <col style="width: 25%">
+                <col style="width: 25%">
+                <col style="width: 25%">
+            </colgroup>
+            <thead>
+            <tr>
 
                     <th>
                         Город
@@ -31,12 +31,12 @@
                     </th>
 
                     <th>
-                        Вакансий C#-разработчик
+                        Вакансий C# программист
                     </th>
 
-                </tr>
-                </thead>
-                <tbody>
+            </tr>
+            </thead>
+            <tbody>
 
                 <tr>
                     <td>
@@ -49,7 +49,7 @@
                         83688
                     </td>
                     <td>
-                        12227
+                        17138
                     </td>
                 </tr>
 
@@ -64,22 +64,7 @@
                         68744
                     </td>
                     <td>
-                        4824
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        Минск
-                    </td>
-                    <td>
-                        165500
-                    </td>
-                    <td>
-                        94082
-                    </td>
-                    <td>
-                        2105
+                        7047
                     </td>
                 </tr>
 
@@ -94,7 +79,7 @@
                         79898
                     </td>
                     <td>
-                        1373
+                        2369
                     </td>
                 </tr>
 
@@ -109,22 +94,22 @@
                         64772
                     </td>
                     <td>
-                        1142
+                        2331
                     </td>
                 </tr>
 
                 <tr>
                     <td>
-                        Воронеж
+                        Минск
                     </td>
                     <td>
-                        75778
+                        165500
                     </td>
                     <td>
-                        43461
+                        94082
                     </td>
                     <td>
-                        1068
+                        1734
                     </td>
                 </tr>
 
@@ -139,7 +124,7 @@
                         49915
                     </td>
                     <td>
-                        1017
+                        1466
                     </td>
                 </tr>
 
@@ -154,7 +139,7 @@
                         59139
                     </td>
                     <td>
-                        982
+                        1254
                     </td>
                 </tr>
 
@@ -169,7 +154,7 @@
                         51310
                     </td>
                     <td>
-                        896
+                        1125
                     </td>
                 </tr>
 
@@ -184,48 +169,56 @@
                         45004
                     </td>
                     <td>
-                        600
+                        999
                     </td>
                 </tr>
 
-                </tbody>
-            </table>
-        {% else %}
-            <table class="table">
-                <colgroup>
-                    <col style="width: 25%">
-                    <col style="width: 25%">
-                    <col style="width: 25%">
-                    <col style="width: 25%">
-                </colgroup>
-                <thead>
                 <tr>
-                    {% for header in header_city %}
-                        <th>
-                            {{ header }}
-                        </th>
-                    {% endfor %}
+                    <td>
+                        Самара
+                    </td>
+                    <td>
+                        51632
+                    </td>
+                    <td>
+                        49548
+                    </td>
+                    <td>
+                        777
+                    </td>
                 </tr>
-                </thead>
-                <tbody>
-                {% for city in statistics_by_cities %}
-                    <tr>
-                        <td>
-                            {{ city.area_name }}
-                        </td>
-                        <td>
-                            {{ city.total_count }}
-                        </td>
-                        <td>
-                            {{ city.avg_salary|floatformat:"0" }}
-                        </td>
-                        <td>
-                            {{ city.prof_count }}
-                        </td>
-                    </tr>
+
+            </tbody>
+        </table>
+    {% else %}
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                {% for header in header_city %}
+                    <th>
+                        {{ header }}
+                    </th>
                 {% endfor %}
-                </tbody>
-            </table>
-        {% endif %}
-    </div>
+            </tr>
+            </thead>
+            <tbody>
+            {% for city in statistics_by_cities %}
+                <tr>
+                    <td>
+                        {{ city.area_name }}
+                    </td>
+                    <td>
+                        {{ city.total_count }}
+                    </td>
+                    <td>
+                        {{ city.avg_salary|floatformat:"0" }}
+                    </td>
+                    <td>
+                        {{ city.prof_count }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 {% endblock %}
