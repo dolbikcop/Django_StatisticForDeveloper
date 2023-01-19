@@ -1,14 +1,11 @@
-# from django.db.models import QuerySet
 from django.shortcuts import render, redirect
 from django.core.handlers.wsgi import WSGIRequest
 from django.db.models import Q, Avg, Count
-# from rest_framework.viewsets import ModelViewSet
 
-from myapp1.forms import VacancyForm
+from myapp1.forms import VacancyForm, HHForm
 from myapp1.models import Vacancy
 
 from collections import Counter
-# from myapp1.serializers import VacancySerializer
 
 import time
 import requests
@@ -22,19 +19,26 @@ from bs4 import BeautifulSoup
 # Create your views here.
 
 def index_page(request: WSGIRequest) -> render:
-    return render(request, 'main.html')
+    data = {
+        'title': 'Главная страница',
+        'profession_name': "C# программист"
+    }
+    return render(request, 'main.html', data)
 
 
 def relevance_page(request: WSGIRequest) -> render:
     prerender = True
+    profession_name = "C# программист"
     data = {
-        'prerender': prerender
+        'prerender': prerender,
+        'profession_name': profession_name,
+        'title': "Статистика по годам"
     }
     if not prerender:
-        profession_name = "C#-разработчик"
         header_year = ["Год", "Средняя зарплата", f"Средняя зарплата - {profession_name}", "Количество вакансий",
                        f"Количество вакансий - {profession_name}"]
-        prof_filter = Q(name__icontains=f'{profession_name}') | Q(name__icontains='C#') | Q(name__icontains='Шарп')
+        prof_filter = Q(name__icontains=f'{profession_name}') | Q(name__icontains='C#') | Q(name__icontains='С#') | Q(
+            name__icontains='си шарп')
         prof_count = Count('id', filter=prof_filter)
         prof_salary = Avg('salary', filter=prof_filter)
         statistics_by_years = list(Vacancy.objects
@@ -45,7 +49,6 @@ def relevance_page(request: WSGIRequest) -> render:
                                    .order_by('-published_at'))
         data.update({
             'header_year': header_year,
-            'profession_name': f"{profession_name}",
             'statistics_by_years': statistics_by_years
         })
     return render(request, 'relevance.html', data)
@@ -53,14 +56,17 @@ def relevance_page(request: WSGIRequest) -> render:
 
 def geography_page(request: WSGIRequest) -> render:
     prerender = True
+    profession_name = "C# программист"
     data = {
-        'prerender': prerender
+        'prerender': prerender,
+        'profession_name': profession_name,
+        'title': "Статистика по городам"
     }
     if not prerender:
-        profession_name = "C#-разработчик"
         header = ["Город", "Всего вакансий", "Средняя зарплата", f"Вакансий {profession_name}"]
 
-        prof_filter = Q(name__icontains=f'{profession_name}') | Q(name__icontains='C#-разработчик') | Q(name__icontains='Шарп')
+        prof_filter = Q(name__icontains=f'{profession_name}') | Q(name__icontains='C#') | Q(name__icontains='С#') | Q(
+            name__icontains='си шарп')
         prof_count = Count('id', filter=prof_filter)
         statistics_by_cities = list(Vacancy.objects
                                     .values('area_name')
@@ -80,10 +86,11 @@ def geography_page(request: WSGIRequest) -> render:
 def skills_page(request: WSGIRequest) -> render:
     prerender = True
     data = {
-        "prerender": prerender
+        "prerender": prerender,
+        'title': "Востребованные навыки по годам"
     }
     if not prerender:
-        header = ["Год", "Навыки"]
+        header = ["Год", 'Навыки']
         all_skills = Vacancy.objects.exclude(key_skills=None).values('key_skills', 'published_at')
         skills_by_year = {}
         for c_skill in all_skills:
@@ -104,13 +111,23 @@ def skills_page(request: WSGIRequest) -> render:
 
 
 def recent_vacancies_page(request: WSGIRequest) -> render:
-    header = ["Название", "Описание", "Навыки", "Компания", "Оклад", "Название региона", "Дата публикации"]
-    date_from = datetime.datetime(year=2022, month=12, day=12)
+    error_message = ""
     max_vacancies_count = 10
-    vacancies = Parser(date_from, max_vacancies_count).vacancies.to_dict(orient='records')
+    vacancies, header = [], []
+    if request.method == "POST":
+        received_form = HHForm(request.POST)
+        if received_form.is_valid():
+            date = received_form.cleaned_data.get('date')
+            header = ["Название", "Описание", "Навыки", "Компания", "Оклад", "Название региона", "Дата публикации"]
+            vacancies = Parser(date, max_vacancies_count).vacancies.to_dict(orient='records')
+        else:
+            error_message = "Неправильно заполненная форма."
+    form = HHForm()
     data = {
         'vacancies': vacancies,
-        'headers': header
+        'headers': header,
+        'error_msg': error_message,
+        'form': form
     }
     return render(request, 'recent_vacancies.html', data)
 
@@ -125,7 +142,7 @@ def add_vacancy(request: WSGIRequest) -> render:
         else:
             error_message = "Неправильно заполненная форма."
 
-    form = VacancyForm()
+    form = VacancyForm(initial={"published_at": None, "salary": None})
     data = {
         'form': form,
         'error_message': error_message
@@ -232,7 +249,7 @@ def get_vacancies(date_from: datetime.datetime, date_to: datetime.datetime, max_
         columns=["name", "description", "key_skills", "salary_from", "salary_to", "salary_currency", "company",
                  "area_name", "published_at"])
 
-    parsing_iterations = 20  # ceil(max_vacancies_count / (per_page * pages))
+    parsing_iterations = 100  # ceil(max_vacancies_count / (per_page * pages))
     timedelta = date_to - date_from
     n_hours = timedelta.days * 24 + timedelta.seconds / 3600
     time_chunk = ceil(n_hours / parsing_iterations)
@@ -246,7 +263,7 @@ def get_vacancies(date_from: datetime.datetime, date_to: datetime.datetime, max_
 
         for page in range(pages):
             params = {
-                'text': 'c#-разработчик OR c#-developer OR специалист-c# OR c# OR csharp OR C#',
+                'text': 'c# OR c-sharp OR шарп OR с# OR Си шарп OR си-шарп',
                 'search_field': "name",
                 'per_page': per_page,
                 'page': page,
