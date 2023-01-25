@@ -1,141 +1,143 @@
 {% extends "layout.html" %}
 
 {% block head_content %}
-    <title>Навыки</title>
+    <title>{{ title }}</title>
 {% endblock %}
 
 {% block main_content %}
-    <div class="container">
-        <h2>Навыки</h2>
-        <p>Проценты указаны по отношению к числу всех навыков за выбранный год</p>
-        {% if prerender %}
-            <table class="table">
-                <thead>
-                <tr>
+    <h4>{{ title }}</h4>
 
+    {% if prerender %}
+        <table class="table table-bordered table-hover skills-table">
+            <caption>{{ title }}</caption>
+            <thead>
+            <tr>
+
+                <th>
+                    Год
+                </th>
+
+                <th>
+                    Навыки<sup id="start"><a class="sup-link" href="#finish">*</a></sup>
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+                <td>
+                    2022
+                </td>
+                <td>
+                    SQL - 2,13%<br>Работа в команде - 2,01%<br>Английский язык - 1,80%<br>Git - 1,67%<br>Linux -
+                    1,35%<br>JavaScript - 1,16%<br>Python - 1,12%<br>Пользователь ПК - 1,11%<br>Грамотная речь -
+                    1,06%<br>Управление проектами - 1,04%<br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    2021
+                </td>
+                <td>
+                    SQL - 2,09%<br>Работа в команде - 1,94%<br>Английский язык - 1,79%<br>Git - 1,64%<br>Грамотная речь
+                    - 1,60%<br>Пользователь ПК - 1,41%<br>JavaScript - 1,32%<br>Linux - 1,28%<br>Python - 1,07%<br>Управление
+                    проектами - 1,00%<br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    2020
+                </td>
+                <td>
+                    SQL - 2,05%<br>Git - 1,65%<br>Английский язык - 1,56%<br>JavaScript - 1,52%<br>Работа в команде -
+                    1,37%<br>Пользователь ПК - 1,37%<br>Linux - 1,33%<br>Грамотная речь - 1,20%<br>Java - 1,12%<br>HTML
+                    - 1,02%<br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    2019
+                </td>
+                <td>
+                    JavaScript - 1,94%<br>SQL - 1,57%<br>Git - 1,54%<br>HTML - 1,36%<br>Работа в команде - 1,23%<br>Английский
+                    язык - 1,21%<br>CSS - 1,20%<br>Пользователь ПК - 1,15%<br>Linux - 1,11%<br>Ведение переговоров -
+                    1,11%<br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    2018
+                </td>
+                <td>
+                    JavaScript - 2,33%<br>HTML - 1,67%<br>Git - 1,62%<br>CSS - 1,46%<br>PHP - 1,42%<br>SQL - 1,34%<br>MySQL
+                    - 1,30%<br>Ведение переговоров - 1,27%<br>Управление проектами - 1,13%<br>Работа в команде -
+                    1,10%<br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    2017
+                </td>
+                <td>
+                    JavaScript - 2,54%<br>HTML - 1,82%<br>PHP - 1,60%<br>CSS - 1,60%<br>Git - 1,58%<br>MySQL - 1,41%<br>Ведение
+                    переговоров - 1,28%<br>SQL - 1,25%<br>jQuery - 1,22%<br>HTML5 - 1,13%<br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    2016
+                </td>
+                <td>
+                    JavaScript - 2,35%<br>HTML - 1,70%<br>PHP - 1,57%<br>Git - 1,47%<br>Ведение переговоров - 1,46%<br>CSS
+                    - 1,42%<br>jQuery - 1,34%<br>MySQL - 1,32%<br>Работа в команде - 1,24%<br>HTML5 - 1,18%<br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    2015
+                </td>
+                <td>
+                    JavaScript - 3,30%<br>ООП - 2,53%<br>jQuery - 2,52%<br>HTML5 - 2,46%<br>HTML - 1,87%<br>C# -
+                    1,69%<br>MVC - 1,55%<br>.NET Framework - 1,53%<br>CSS - 1,48%<br>ASP.NET - 1,48%<br>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    {% else %}
+        <table class="table table-bordered table-hover skills-table">
+            <thead>
+            <tr>
+                {% for header in headers %}
                     <th>
-                        Год
+                        {{ header }}
                     </th>
-
-                    <th>
-                        Навыки
-                    </th>
-
-                </tr>
-                </thead>
-                <tbody>
-
-                <tr>
-                    <td>
-                        2022
-                    </td>
-                    <td>
-                        SQL - 2,13%, Работа в команде - 2,01%, Английский язык - 1,80%, Git - 1,67%, Linux - 1,35%,
-                        JavaScript - 1,16%, Python - 1,12%, Пользователь ПК - 1,11%, Грамотная речь - 1,06%, Управление
-                        проектами - 1,04%,
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        2021
-                    </td>
-                    <td>
-                        SQL - 2,09%, Работа в команде - 1,94%, Английский язык - 1,79%, Git - 1,64%, Грамотная речь -
-                        1,60%,
-                        Пользователь ПК - 1,41%, JavaScript - 1,32%, Linux - 1,28%, Python - 1,07%, Управление проектами
-                        -
-                        1,00%,
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        2020
-                    </td>
-                    <td>
-                        SQL - 2,05%, Git - 1,65%, Английский язык - 1,56%, JavaScript - 1,52%, Работа в команде - 1,37%,
-                        Пользователь ПК - 1,37%, Linux - 1,33%, Грамотная речь - 1,20%, Java - 1,12%, HTML - 1,02%,
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        2019
-                    </td>
-                    <td>
-                        JavaScript - 1,94%, SQL - 1,57%, Git - 1,54%, HTML - 1,36%, Работа в команде - 1,23%, Английский
-                        язык - 1,21%, CSS - 1,20%, Пользователь ПК - 1,15%, Linux - 1,11%, Ведение переговоров - 1,11%,
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        2018
-                    </td>
-                    <td>
-                        JavaScript - 2,33%, HTML - 1,67%, Git - 1,62%, CSS - 1,46%, PHP - 1,42%, SQL - 1,34%, MySQL -
-                        1,30%,
-                        Ведение переговоров - 1,27%, Управление проектами - 1,13%, Работа в команде - 1,10%,
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        2017
-                    </td>
-                    <td>
-                        JavaScript - 2,54%, HTML - 1,82%, PHP - 1,60%, CSS - 1,60%, Git - 1,58%, MySQL - 1,41%, Ведение
-                        переговоров - 1,28%, SQL - 1,25%, jQuery - 1,22%, HTML5 - 1,13%,
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        2016
-                    </td>
-                    <td>
-                        JavaScript - 2,35%, HTML - 1,70%, PHP - 1,57%, Git - 1,47%, Ведение переговоров - 1,46%, CSS -
-                        1,42%, jQuery - 1,34%, MySQL - 1,32%, Работа в команде - 1,24%, HTML5 - 1,18%,
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        2015
-                    </td>
-                    <td>
-                        JavaScript - 3,30%, ООП - 2,53%, jQuery - 2,52%, HTML5 - 2,46%, HTML - 1,87%, C# - 1,69%, MVC -
-                        1,55%, .NET Framework - 1,53%, CSS - 1,48%, ASP.NET - 1,48%,
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-        {% else %}
-            <table class="table">
-                <thead>
-                <tr>
-                    {% for header in headers %}
-                        <th>
-                            {{ header }}
-                        </th>
-                    {% endfor %}
-                </tr>
-                </thead>
-                <tbody>
-                {% for year, skills in skills_by_year.items %}
-                    <tr>
-                        <td>
-                            {{ year }}
-                        </td>
-                        <td>
-                            {% for skill, count in skills %}{{ skill }} - {{ count|floatformat:"2" }}%, {% endfor %}
-                        </td>
-                    </tr>
                 {% endfor %}
-                </tbody>
-            </table>
-        {% endif %}
-    </div>
+            </tr>
+            </thead>
+            <tbody>
+            {% for year, skills in skills_by_year.items %}
+                <tr>
+                    <td>
+                        {{ year }}
+                    </td>
+                    <td>
+                        {% for skill, count in skills %}{{ skill }} - {{ count|floatformat:"2" }}%<br>{% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <p class="table-footnote">
+        <a href="#start" id="finish">*Проценты указаны по отношению к числу всех навыков за выбранный год.</a>
+    </p>
 {% endblock %}
